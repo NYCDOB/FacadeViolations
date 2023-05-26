@@ -56,13 +56,10 @@ body {
 	position: absolute;
 	visibility: hidden;
 }
-
-
-
-/* @media( max-width:1200px){
-	.dobmain	{
-		padding-top:50px;
-	}
+#div-devsquad-media{
+	visibility:hidden;
+}
+@media( max-width:1200px){
 	.legendShed {
 		visibility:hidden;
 	}
@@ -70,9 +67,24 @@ body {
 		visibility:hidden;
 	}
 	.ui {
-		margin-top: -150px;
+		visibility:hidden;
+	}
+	#div-vioboro{
+		<!-- position:relative; -->
+	}
+	#div-top5{
+		padding-top:150px;
+		<!-- position:absolute; -->
+	}
+
+	#div-devsquad{
+		visibility:hidden;
+	}
+	#div-devsquad-media{
+		visibility:visible;
 	}
 }
+/*
 @media ( max-width:2100px){
 	.summarytxt_sheds {
 		font-size: 12px !important;
@@ -95,8 +107,8 @@ body {
 	.summarytxt {
 		font-size: 12px !important;
 	}
-} */
-
+}
+*/
 
 svg {
 	display: block;
@@ -485,7 +497,7 @@ input:checked + .slider:before {
 		  </div>
 	</div>
 	<div class="chartrow">
-		<div class="col-lg-6" style="height:28vh; margin-top:10px;">
+		<div class="col-lg-6" id="div-vioboro" style="height:28vh; margin-top:10px;">
 			<div class="chart-wrapper" style="border:1px solid black;">
 			  <div class="chart-stage" id="chart-boro-vios">
 				<div class="summarytxt" >FACADE VIOLATIONS BY BOROUGH</br>
@@ -493,10 +505,11 @@ input:checked + .slider:before {
 				</div>
 			  </div>
 			</div>
-			<div class="small text-muted" style="position:relative; bottom:0px; left:10px;">Built by DOB Analytics <a href="https://www1.nyc.gov/site/buildings/dob/analytics-reports.page" target=	"_blank">Dev Squad</a>
+			<div class="small text-muted" id="div-devsquad" style="position:relative; bottom:0px; left:10px;">Built by DOB Analytics <a href="https://www1.nyc.gov/site/buildings/dob/analytics-reports.page" target=	"_blank">Dev Squad</a>
 			</div>
 		</div>
-		<div class="col-lg-6" style="height:28vh; margin-top:10px;">
+
+		<div class="col-lg-6" id="div-top5" style="height:28vh; margin-top:10px;">
 				<div class="chart-wrapper" style="border:1px solid black;">
 				  <div class="chart-stage" id="chart-top5">
 					<div class="summarytxt" >TOP 5 COMMUNITY DISTRICTS: FACADE VIOLATIONS</br>
@@ -517,6 +530,8 @@ input:checked + .slider:before {
 					</div>
 				  </div>
 				</div>
+			<div class="small text-muted" id="div-devsquad-media" style="position:relative; bottom:0px; left:10px;">Built by DOB Analytics <a href="https://www1.nyc.gov/site/buildings/dob/analytics-reports.page" target=	"_blank">Dev Squad</a>
+			</div>
 		</div>
 
 		
@@ -729,7 +744,8 @@ function ready(){
 	
 	
 	 
-		d3.csv("data/ActiveFacadeECBViolation.csv",function(data){
+		//d3.csv("data/ActiveFacadeECBViolation.csv",function(data){
+		d3.csv("https://raw.githubusercontent.com/NYCDOB/FacadeSafetyReport/gh-pages/data/ActiveFacadeECBViolation.csv",function(data){
 				points = data.map(function(d){
 				d.latLng = [+d["LAT"],+d["LONG"]];
 				d.bin = d["BIN-Occurrence"];
