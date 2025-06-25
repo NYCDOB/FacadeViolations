@@ -746,7 +746,7 @@ function ready(){
 	 
 		//d3.csv("data/ActiveFacadeECBViolation.csv",function(data){
 		d3.csv("https://raw.githubusercontent.com/NYCDOB/FacadeSafetyReport/gh-pages/data/ActiveFacadeECBViolation.csv",function(data){
-				points = data.map(function(d){
+				points = data.filter(function(d) {if( d["Vio Standard Description"] != "" ) {return d;}}).map(function(d){
 				d.latLng = [+d["LAT"],+d["LONG"]];
 				d.bin = d["BIN-Occurrence"];
 				d.houseNum = d["House# Occurrence"];
